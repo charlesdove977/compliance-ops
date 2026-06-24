@@ -1,0 +1,45 @@
+{
+  "name": "compliance-ops",
+  "version": "0.1.0",
+  "description": "Interview-driven compliance guardrail skill for Claude Code. Makes your AI build with HIPAA (and soon SOC2) principles baked in, keeping protected data out of non-BAA flows. Not legal advice; does not make a Claude consumer subscription able to process PHI.",
+  "keywords": [
+    "claude-code",
+    "claude",
+    "skill",
+    "compliance",
+    "hipaa",
+    "soc2",
+    "baa",
+    "phi",
+    "healthcare",
+    "guardrail",
+    "data-flow"
+  ],
+  "homepage": "https://github.com/charlesdove977/compliance-ops#readme",
+  "bugs": {
+    "url": "https://github.com/charlesdove977/compliance-ops/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlesdove977/compliance-ops.git"
+  },
+  "license": "MIT",
+  "author": "Charles J Dove",
+  "type": "commonjs",
+  "bin": {
+    "compliance-ops": "bin/compliance-ops.js"
+  },
+  "files": [
+    "bin/",
+    "skill/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "test": "node bin/compliance-ops.js --version && echo 'OK'"
+  }
+}

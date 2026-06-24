@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Compliance Ops — compliance guardrail for Claude Code (HIPAA active; SOC 2, GDPR, PCI-DSS coming soon)" width="100%">
+</p>
+
 # Compliance Ops
 
 **A compliance guardrail framework for Claude Code.** It makes your AI aware of compliance rules *before* it builds anything — so every website, workflow, automation, and system it creates for you is designed with those principles baked in. Protected data never gets routed through non-compliant servers or flows, and you rest assured nothing leaks through a tool that was never allowed to touch it.
@@ -99,7 +103,19 @@ More compliance frameworks are being added over time. The framework-agnostic cor
 
 ## Install
 
-Drop the `compliance-ops/` directory into your Claude Code skills folder (`~/.claude/skills/compliance-ops/` for global use, or your project's `.claude/skills/`). It ships inside [Charlie OS](https://charlieautomates.com) by default.
+**Via npm (recommended):**
+
+```bash
+npx compliance-ops install            # installs to ~/.claude/skills/compliance-ops/
+npx compliance-ops install --project  # installs into ./.claude/ for the current project
+npx compliance-ops install --with-commands   # also writes /compliance-ops slash-command stubs
+```
+
+Other commands: `npx compliance-ops update` (overwrite), `uninstall`, `where`, `--help`.
+
+**Manual:** copy the `skill/` directory's contents into `~/.claude/skills/compliance-ops/` (so `SKILL.md` sits at the root of that folder).
+
+**Charlie OS:** ships inside [Charlie OS](https://charlieautomates.com) by default — no separate install needed.
 
 ---
 
