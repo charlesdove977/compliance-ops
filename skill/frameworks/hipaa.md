@@ -1,6 +1,6 @@
 <hipaa_framework>
 ## Purpose
-The HIPAA-specific framework: when HIPAA triggers, which Anthropic/Claude surfaces are eligible, the compliant AI-on-PHI paths, and the recommended architecture patterns. Built on top of `compliance-principles.md`. Pair with `vendor-baa-matrix.md` for the per-vendor lookup.
+The HIPAA-specific framework: when HIPAA triggers, which Anthropic/Claude surfaces are eligible, the compliant AI-on-PHI paths, and the recommended architecture patterns. Built on top of `compliance-principles.md`. Pair with `vendor-matrix.md` for the per-vendor lookup.
 
 Verified against Anthropic's Trust Center / privacy docs, AWS and Google Cloud HIPAA pages, and HHS guidance (2025–2026). Re-verify before relying on it; vendor policies change.
 
@@ -71,7 +71,7 @@ Result: one BAA, one place PHI lives, AI never touches PHI. Cheapest and most de
 - **Zapier / Make:** do NOT sign BAAs — keep PHI out of them. Use the covered platform's own automations, or self-hosted n8n on AWS under the AWS BAA.
 - **AWS / Bedrock:** HIPAA-eligible, BAA self-service via AWS Artifact.
 
-See `vendor-baa-matrix.md` for the full table.
+See `vendor-matrix.md` for the full table.
 
 ---
 

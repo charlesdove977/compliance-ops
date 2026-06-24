@@ -2,11 +2,11 @@
 ## Purpose
 The pre-build tripwire checklist. Run this BEFORE the AI builds anything that could touch protected data. Each item is a tripwire — if it fires, STOP, surface it plainly, and do not build through it. This is the "seatbelt" half of Compliance Ops.
 
-Phrased for HIPAA/PHI; the same logic applies to any protected-data class (swap "PHI" for the relevant class).
+The first block is phrased for HIPAA/PHI; the same logic applies to any protected-data class. Regime-specific tripwires for SOC 2, GDPR, and PCI-DSS follow below — run whichever regimes apply (more than one can).
 
 ---
 
-## Tripwires — STOP if any fires
+## Tripwires — STOP if any fires (HIPAA / general)
 
 - [ ] **AI about to read protected data.** Is Claude being pointed at a file, folder, export, or paste that contains real PHI (intake records, notes, claims)? → STOP. Keep the AI in Lane 1. PHI goes through covered vendors, not the AI, unless on a covered endpoint (Bedrock+BAA).
 
@@ -22,12 +22,35 @@ Phrased for HIPAA/PHI; the same logic applies to any protected-data class (swap 
 
 ---
 
+## SOC 2 tripwires — STOP if any fires
+
+- [ ] **Secrets in the repo / plaintext env.** API keys, DB creds, tokens committed to git or baked into a client bundle? → STOP. Vault them. (Most common CC6 finding.)
+- [ ] **Customer data → consumer AI endpoint.** Customer data about to hit consumer Claude.ai/Pro instead of a commercial API/Bedrock under a DPA? → STOP. Use a covered endpoint.
+- [ ] **New vendor with no SOC 2 + DPA.** A sub-processor entering the data path without its own SOC 2 Type II + an executed DPA? → STOP. Verify or swap; add to the sub-processor list.
+- [ ] **No audit logging on customer-data access/changes.** → STOP. Add logging now; Type II needs evidence across a period.
+
+## GDPR tripwires — STOP if any fires
+
+- [ ] **No lawful basis / no DPA.** EU personal data being collected with no documented Art. 6 basis, or piped to a processor with no signed DPA? → STOP.
+- [ ] **US transfer with no SCCs/DPF.** EU personal data sent to a US endpoint (AI, analytics, email) with no transfer mechanism? → STOP. Route AI through a DPA'd commercial tier with SCCs/DPF.
+- [ ] **No deletion/export path.** System can't actually fulfill erasure or portability (deletion doesn't cascade to processors/backups)? → STOP, build it.
+- [ ] **Special-category data on a weak basis.** Health/biometric/etc. without explicit consent? → STOP.
+
+## PCI-DSS tripwires — STOP if any fires
+
+- [ ] **Raw card number (PAN) touching your own server/API.** A custom card form POSTing PAN to your backend? → STOP. Use the processor's hosted fields / redirect (SAQ A).
+- [ ] **AI anywhere near card data.** The AI about to read, log, or echo a PAN or CVV? → STOP. The AI stays entirely outside the CDE; it builds around the tokenized flow.
+- [ ] **Logging or storing PAN / SAD.** PAN in logs/DB, or CVV/track/PIN stored at all? → STOP. Store token + last4 + brand only; SAD is never stored.
+- [ ] **Rolling your own card form** instead of the processor's hosted field? → STOP. Defeats scope reduction; exposes you to skimming liability.
+
+---
+
 ## Green-light (safe to build) when
 
-- [ ] Every surface that touches PHI is a covered vendor on the right tier, OR redesigned out of the PHI path.
-- [ ] The AI is confirmed in Lane 1 (no PHI), OR on a covered endpoint with the reason documented.
-- [ ] No no-BAA tool sits anywhere in the PHI path.
-- [ ] The PHI path is mapped and ready for the data-flow document.
+- [ ] Every surface that touches protected data carries the right coverage for its regime (BAA / SOC 2+DPA / DPA+transfer / PCI processor), OR is redesigned out of the protected path.
+- [ ] The AI is confirmed in Lane 1 (no protected data), OR on a covered endpoint with the reason documented. For PCI, the AI is entirely outside the CDE.
+- [ ] No uncovered tool sits anywhere in the protected-data path.
+- [ ] The protected-data path is mapped and ready for the data-flow document.
 
 If all green-lights pass and no tripwire fired, build. Otherwise, resolve first.
 

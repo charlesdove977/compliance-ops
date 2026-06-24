@@ -1,7 +1,7 @@
 {
   "name": "compliance-ops",
-  "version": "0.1.0",
-  "description": "Interview-driven compliance guardrail skill for Claude Code. Makes your AI build with HIPAA (and soon SOC2) principles baked in, keeping protected data out of non-BAA flows. Not legal advice; does not make a Claude consumer subscription able to process PHI.",
+  "version": "0.2.0",
+  "description": "Interview-driven compliance guardrail skill for Claude Code. Makes your AI build with HIPAA, SOC 2, GDPR, and PCI-DSS principles baked in, keeping protected data out of uncovered servers and flows. Not legal advice; does not make a Claude consumer subscription able to process protected data.",
   "keywords": [
     "claude-code",
     "claude",
@@ -9,7 +9,10 @@
     "compliance",
     "hipaa",
     "soc2",
+    "gdpr",
+    "pci-dss",
     "baa",
+    "dpa",
     "phi",
     "healthcare",
     "guardrail",

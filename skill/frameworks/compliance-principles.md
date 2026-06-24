@@ -66,7 +66,7 @@ A BAA / DPA makes the *vendor* a compliant handler of protected data on their in
        YES → continue
 3. Can that surface be kept out of the protected path?
        YES → redesign so protected data flows elsewhere (native covered form, etc.)
-       NO  → that vendor MUST be under a signed agreement (check vendor-baa-matrix.md)
+       NO  → that vendor MUST be under a signed agreement (check vendor-matrix.md)
 4. Does the AI need to read the protected data?
        NO  → keep AI in Lane 1. (default, preferred)
        YES → AI must run on a covered endpoint (Bedrock+BAA / API+BAA+ZDR)

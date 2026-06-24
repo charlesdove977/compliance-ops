@@ -20,7 +20,7 @@ As a business owner facing a compliance review, I want a clear document showing 
 </context>
 
 <references>
-@frameworks/vendor-baa-matrix.md
+@frameworks/vendor-matrix.md
 </references>
 
 <steps>

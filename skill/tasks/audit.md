@@ -20,7 +20,7 @@ As someone who already built a system, I want to know where my protected data is
 <references>
 @frameworks/hipaa.md
 @frameworks/soc2.md
-@frameworks/vendor-baa-matrix.md
+@frameworks/vendor-matrix.md
 @templates/data-flow-map.md
 </references>
 
@@ -33,7 +33,7 @@ State the short-form disclaimer. Ask which system/flow to audit and which regime
 Walk the real path the protected data takes, end to end: where it's collected → every system it passes through → where it lands. Inspect config/code where available (forms, webhooks, automation steps, integrations, any AI steps). Do not assume — trace.
 
 ### 3. Flag every touchpoint
-For each system in the path, determine if it creates/receives/maintains/transmits protected data (Principle 2). For each that does, check `vendor-baa-matrix.md`:
+For each system in the path, determine if it creates/receives/maintains/transmits protected data (Principle 2). For each that does, check `vendor-matrix.md`:
 - Covered + right tier → OK.
 - Covered but wrong tier / not enabled → **gap (fixable)**.
 - Not covered (Zapier/Make/uncovered host) → **gap (critical)**.

@@ -21,9 +21,11 @@ Read the framework-agnostic core before interviewing.
 <references>
 Lazy-load the regime-specific framework once the concern is known:
 @frameworks/hipaa.md (HIPAA / PHI / healthcare / behavioral health)
-@frameworks/soc2.md (SOC2)
-@frameworks/vendor-baa-matrix.md (whenever evaluating a vendor for Lane 2)
-@checklists/phi-safety.md (run before the AI builds anything that could touch protected data)
+@frameworks/soc2.md (SOC 2 / customer data / enterprise procurement)
+@frameworks/gdpr.md (GDPR / EU users / personal data)
+@frameworks/pci-dss.md (PCI / payments / card data)
+@frameworks/vendor-matrix.md (whenever evaluating a vendor for Lane 2 — multi-regime)
+@checklists/phi-safety.md (run before the AI builds anything that could touch protected data — covers all regimes)
 </references>
 
 <steps>
@@ -31,14 +33,16 @@ Lazy-load the regime-specific framework once the concern is known:
 ### 1. Open with the disclaimer, then interview
 State the short-form disclaimer up front (not legal advice; cannot make a consumer subscription handle protected data). Then ask the two core questions — one group, then wait:
 1. **What are you building?** (website, intake form, CRM workflow, automation, full system…)
-2. **What are you worried about / what regime applies?** (HIPAA/patient data, SOC2, finance, "not sure")
+2. **What are you worried about / what regime applies?** (HIPAA/patient data, SOC 2/customer data, GDPR/EU users, PCI/payments, "not sure")
 
-If the regime is unclear, infer from the industry (behavioral health → HIPAA) and confirm.
+If the regime is unclear, infer from the industry/feature and confirm: behavioral health → HIPAA; SaaS with enterprise buyers → SOC 2; EU users / personal data → GDPR; anything taking card payments → PCI-DSS. More than one can apply at once.
 
-### 2. Load the matching framework
-- HIPAA/PHI → load `frameworks/hipaa.md`.
-- SOC2 → load `frameworks/soc2.md` (note it's a roadmap stub; apply the core principles).
-- Anything else → apply `compliance-principles.md` and say the dedicated framework is on the roadmap.
+### 2. Load the matching framework(s)
+- HIPAA / PHI / healthcare → `frameworks/hipaa.md`.
+- SOC 2 / customer data / enterprise procurement → `frameworks/soc2.md`.
+- GDPR / EU personal data → `frameworks/gdpr.md`.
+- PCI / payments / card data → `frameworks/pci-dss.md`.
+- Load more than one if the build spans regimes (e.g. an EU healthcare SaaS taking payments = HIPAA + GDPR + PCI). Always layer on `compliance-principles.md`.
 
 ### 3. Map the surfaces and find the protected-data touchpoints
 List every surface in what they're building (pages, forms, storage, automations, integrations, AI steps). For each, ask: **does this surface create, receive, maintain, or transmit protected data?** Use Principle 2 — touching counts, storing is not required.
@@ -48,7 +52,7 @@ Mark each surface **Lane 1 (no protected data)** or **Lane 2 (protected data)**.
 ### 4. Apply the decision flow (from compliance-principles.md)
 For every Lane 2 surface:
 - **Can it be kept out of the protected path?** If yes, redesign (e.g. native covered intake form so PHI bypasses the host). Prefer this.
-- **If it must touch protected data,** it MUST be a covered vendor — check `vendor-baa-matrix.md`. If the named tool is a "No" (Zapier/Make), flag it and propose a covered swap.
+- **If it must touch protected data,** it MUST be a covered vendor — check `vendor-matrix.md`. If the named tool is a "No" (Zapier/Make), flag it and propose a covered swap.
 - **Does the AI need to read the protected data?** Default NO — keep AI in Lane 1. If genuinely yes, require a covered endpoint (Bedrock+BAA / API+BAA+ZDR) and say so explicitly.
 
 ### 5. Run the tripwire checklist before building
@@ -75,7 +79,7 @@ Always end with the short-form disclaimer.
 - [ ] Disclaimer stated at open and close.
 - [ ] Both interview questions asked and answered before building.
 - [ ] Every surface classified Lane 1 or Lane 2.
-- [ ] Every Lane 2 vendor checked against `vendor-baa-matrix.md`; no-BAA tools flagged.
+- [ ] Every Lane 2 vendor checked against `vendor-matrix.md`; no-BAA tools flagged.
 - [ ] AI confirmed out of the protected-data path (or a covered endpoint explicitly required).
 - [ ] Tripwire checklist run; no build proceeded through a fired tripwire.
 </acceptance-criteria>
