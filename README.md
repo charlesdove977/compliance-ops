@@ -4,6 +4,16 @@
 
 # Compliance Ops
 
+> Compliance guardrail for [Claude Code](https://claude.ai/code). Makes your AI build with HIPAA (and soon SOC 2) principles baked in — protected data stays out of non-compliant servers and flows, by design. A seatbelt and a paper trail, **not legal advice**.
+
+<p>
+  <a href="https://www.charlieautomates.com/charlie-os-vs/"><img src="https://img.shields.io/badge/Work_with_Charlie-Charlie_OS-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white" alt="Work with Charlie"></a>
+  <a href="https://www.npmjs.com/package/compliance-ops"><img src="https://img.shields.io/npm/v/compliance-ops?color=blue&label=npm" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/compliance-ops"><img src="https://img.shields.io/npm/dt/compliance-ops?color=blue&label=downloads" alt="npm downloads"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/npm/l/compliance-ops?color=green" alt="MIT license"></a>
+  <a href="https://github.com/charlesdove977/compliance-ops/stargazers"><img src="https://img.shields.io/github/stars/charlesdove977/compliance-ops?style=flat" alt="stars"></a>
+</p>
+
 **A compliance guardrail framework for Claude Code.** It makes your AI aware of compliance rules *before* it builds anything — so every website, workflow, automation, and system it creates for you is designed with those principles baked in. Protected data never gets routed through non-compliant servers or flows, and you rest assured nothing leaks through a tool that was never allowed to touch it.
 
 It is a **seatbelt and a paper trail** — not a compliance certificate.
@@ -116,6 +126,13 @@ Other commands: `npx compliance-ops update` (overwrite), `uninstall`, `where`, `
 **Manual:** copy the `skill/` directory's contents into `~/.claude/skills/compliance-ops/` (so `SKILL.md` sits at the root of that folder).
 
 **Charlie OS:** ships inside [Charlie OS](https://charlieautomates.com) by default — no separate install needed.
+
+---
+
+## Related projects
+
+- **[Charlie OS](https://www.charlieautomates.com/charlie-os/)** — one-click Claude Code setup that bundles BASE, CARL, PAUL, SEED, Skillsmith, and 32 curated skills (Compliance Ops included). If you want Compliance Ops *plus* the rest of Charles's stack on day one, install Charlie OS instead.
+- **[Work with Charlie](https://www.charlieautomates.com/charlie-os-vs/)** — done-for-you install, custom skill builds, and 1:1 Claude Code engineering for founders and agency operators (including regulated-industry builds).
 
 ---
 
